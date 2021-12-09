@@ -4,7 +4,12 @@
 
 class Rim : public Article
 {
-    public:
+private:
+    std::string color;
+    bool aluminium;
+    int width;
+
+public:
     int getWidth();
     void setWidth(int w);
 
@@ -20,9 +25,5 @@ class Rim : public Article
 
     virtual void changeProperty(int propIndex);
 
-
-    private:
-    std::string color;
-    bool aluminium;
-    int width;
+    void rimData();
 };

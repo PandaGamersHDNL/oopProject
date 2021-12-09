@@ -27,4 +27,6 @@ public:
     virtual std::vector<std::string> getProperties() override;
 
     virtual void changeProperty(int propIndex);
+
+    void tireData();
 };

@@ -95,4 +95,24 @@ void Tire::changeProperty(int propIndex)
     }
 }
 
+void Tire::tireData()
+{
+    int inputInt; char inputChar; std::string inputStr;
+
+    std::cout << "enter the width. ";
+    std::cin >> inputInt;
+    this->setWidth(inputInt);
+
+    std::cout << "enter the heieght. ";
+    std::cin >> inputInt;
+    this->setHeight(inputInt);
+
+    std::cout << "enter the speed index. ";
+    std::cin >> inputStr;
+    this->setSpeedIndex(inputStr);
+
+    std::cout << "enter the tires' season. ";
+    std::cin >> inputChar;
+    this->setSeason(inputChar);
+}
 

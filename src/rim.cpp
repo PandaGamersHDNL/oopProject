@@ -77,7 +77,25 @@ void Rim::changeProperty(int propIndex)
         this->setWidth(inputInt);
         break;
     }
+
 }
 
+void Rim::rimData()
+{
+        int inputInt; std::string inputStr;
+        do {
+            std::cout << "is it an aluminium this? 1. yes 2. no: ";
+            std::cin >> inputInt;
+        } while (inputInt < 1 && inputInt > 2);
+        this->setAluminium(inputInt == 1 ? true : false);
+
+        std::cout << "what is the color? ";
+        std::cin >> inputStr;
+        this->setColor(inputStr);
+
+        std::cout << "enter the width. ";
+        std::cin >> inputInt;
+        this->setWidth(inputInt);
+    }
 
 

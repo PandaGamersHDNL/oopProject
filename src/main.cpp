@@ -6,48 +6,6 @@
 
 #define DATAPATH "C:/Users/panda/Desktop/Classes/oop/project/data"
 
-//move to tire / rim
-
-
-void tireData(Tire* tire)
-{
-	int inputInt; char inputChar; std::string inputStr;
-
-	std::cout << "enter the width. ";
-	std::cin >> inputInt;
-	tire->setWidth(inputInt);
-
-	std::cout << "enter the heieght. ";
-	std::cin >> inputInt;
-	tire->setHeight(inputInt);
-
-	std::cout << "enter the speed index. ";
-	std::cin >> inputStr;
-	tire->setSpeedIndex(inputStr);
-
-	std::cout << "enter the tires' season. ";
-	std::cin >> inputChar;
-	tire->setSeason(inputChar);
-}
-
-void rimData(Rim* rim)
-{
-	int inputInt; std::string inputStr;
-	do {
-		std::cout << "is it an aluminium rim? 1. yes 2. no: ";
-		std::cin >> inputInt;
-	} while (inputInt < 1 && inputInt > 2);
-	rim->setAluminium(inputInt == 1 ? true : false);
-
-	std::cout << "what is the color? ";
-	std::cin >> inputStr;
-	rim->setColor(inputStr);
-
-	std::cout << "enter the width. ";
-	std::cin >> inputInt;
-	rim->setWidth(inputInt);
-}
-
 std::vector<Article*> searchArticle(TireCenter& center, std::string query)
 {
 	std::vector<Article*> found;
@@ -96,7 +54,7 @@ Article* createArticle(TireCenter& center)
 		rim->setType('R');
 		rim->setName(strInput);
 		rim->articleData();
-		rimData(rim);
+		rim->rimData();
 		return rim;
 	}
 	else if(intInput == 2)
@@ -105,7 +63,7 @@ Article* createArticle(TireCenter& center)
 		tire->setType('T');
 		tire->setName(strInput);
 		tire->articleData();
-		tireData(tire);
+		tire->tireData();
 		return tire;
 	}
 	return nullptr;
