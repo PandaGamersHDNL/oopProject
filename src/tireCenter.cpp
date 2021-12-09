@@ -2,8 +2,59 @@
 #include "article.h"
 #include "customer.h"
 #include "invoice.h"
+#include <fstream>
+#include <iostream>
 
-std::string TireCenter::getName() 
+#define FILENAME "tirecenter.txt"
+
+TireCenter::TireCenter()
+{
+}
+TireCenter::~TireCenter()
+{
+    //TODO save before delete
+}
+TireCenter::TireCenter(std::string path)
+{
+    this->loadData(path);
+    //load data from file
+}
+
+void TireCenter::loadData(std::string path)
+{
+    std::fstream file(path + "/" + FILENAME);
+    
+    if (file.is_open())
+    {
+        this->path = path;
+        std::string text;
+        std::getline(file, text);
+        this->setName(text);
+        std::getline(file, text);
+        this->setAddress(text);
+        //load customers
+        //load invoices
+        //load articles
+    }
+    else
+    {
+        //TODO create tirecenter
+    }
+}
+
+void TireCenter::saveData()
+{
+    std::cout << this->path;
+    if (this->path.size() > 0)
+    {
+        std::ofstream file(this->path + "/" + FILENAME);
+        file << this->getName() << std::endl;
+        file << this->getAddress() << std::endl;
+        file.close();
+    }
+}
+
+std::string TireCenter::getName()
 {
     return this->name;
 }

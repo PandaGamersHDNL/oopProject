@@ -68,7 +68,7 @@ void Tire::changeProperty(int propIndex)
 {
     Article::changeProperty(propIndex);
     //property size of articles
-    const int sizeArt = 6;
+    const int sizeArt = 5;
     int inputInt; std::string inputStr; char inputChar;
     switch (propIndex)
     {

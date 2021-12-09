@@ -8,12 +8,19 @@
 class TireCenter
 {
 private:
+    std::string path;
     std::string name;
     std::string address;
     std::vector<Article*> articles;
     std::vector<Customer> customers;
     std::vector<Invoice> invoices;
 public:
+    TireCenter(std::string path);
+    TireCenter();
+    ~TireCenter();
+
+    void loadData(std::string path);
+    void saveData();
 
     std::string getName();
     void setName(std::string name);

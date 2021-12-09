@@ -4,31 +4,10 @@
 #include "rim.h"
 #include "tire.h"
 
-//move to article / tire / rim
-void articleData(Article* art) {
-	int inputInt; std::string inputStr; float inputFloat; char inputChar;
+#define DATAPATH "C:/Users/panda/Desktop/Classes/oop/project/data"
 
-	std::cout << "please enter the diameter. ";
-	std::cin >> inputInt;
-	art->setDiameter(inputInt);
+//move to tire / rim
 
-	std::cout << "enter the manufacturer. ";
-	std::cin >> inputStr;
-	art->setManufacturer(inputStr);
-
-	std::cout << "enter the price. ";
-	std::cin >> inputFloat;
-	art->setPrice(inputFloat);
-
-	std::cout << "enter the stock. ";
-	std::cin >> inputInt;
-	art->setStock(inputInt);
-
-	std::cout << "enter the type. ";
-	std::cin >> inputChar;
-	art->setType(inputChar);
-
-}
 
 void tireData(Tire* tire)
 {
@@ -114,16 +93,18 @@ Article* createArticle(TireCenter& center)
 	if (intInput == 1)
 	{
 		auto rim = new Rim();
+		rim->setType('R');
 		rim->setName(strInput);
-		articleData(rim);
+		rim->articleData();
 		rimData(rim);
 		return rim;
 	}
 	else if(intInput == 2)
 	{
 		auto tire = new Tire();
+		tire->setType('T');
 		tire->setName(strInput);
-		articleData(tire);
+		tire->articleData();
 		tireData(tire);
 		return tire;
 	}
@@ -230,12 +211,12 @@ void changeArticle(TireCenter& center) {
 	change->changeProperty(--inputInt);
 	change->show();
 }
-void checkInvoices();
 void placeOrder();
+void checkInvoices();
+void updateStock();
+void addCustomer();
 void deleteCustomer();
 void changeCustomer();
-void addCustomer();
-void updateStock();
 
 
 void performAction(TireCenter& center,Options option)
@@ -270,7 +251,7 @@ void performAction(TireCenter& center,Options option)
 
 int main(void)
 {
-    TireCenter center;
+    auto center = TireCenter(DATAPATH);
 	auto art = center.getArticles();
 	auto beep = new Tire;
 	beep->setName("beep");
@@ -279,10 +260,13 @@ int main(void)
 	boop->setName("boop");
 	art.push_back(boop);
 	center.setArticles(art);
+	center.setName("tirecenter");
+	center.setAddress("beep street 2");
     //Menu menu;
 	// test these: 
 	//addArticle(center);
 	//deleteArticle(center);
 	changeArticle(center);
+	center.saveData();
     return 0;
 }

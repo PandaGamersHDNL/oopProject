@@ -30,6 +30,8 @@ public:
     char getType();
     void setType(char type);
 
+    void articleData();
+
     //TODO virtual destructors?
     virtual void show();
 

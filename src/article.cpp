@@ -1,6 +1,7 @@
 #include "article.h"
 #include <iostream>
 
+
 std::string Article::getName() 
 {
     return this->name;
@@ -78,8 +79,7 @@ std::vector<std::string> Article::getProperties()
         "Manufacturer",
         "Stock",
         "Diameter",
-        "Price",
-        "Type"
+        "Price"
     };
 }
 
@@ -119,4 +119,24 @@ case 5:
     this->setType(inputChar);
         break;
     }
+}
+
+void Article::articleData() {
+    int inputInt; std::string inputStr; float inputFloat; char inputChar;
+
+    std::cout << "please enter the diameter. ";
+    std::cin >> inputInt;
+    this->setDiameter(inputInt);
+
+    std::cout << "enter the manufacturer. ";
+    std::cin >> inputStr;
+    this->setManufacturer(inputStr);
+
+    std::cout << "enter the price. ";
+    std::cin >> inputFloat;
+    this->setPrice(inputFloat);
+
+    std::cout << "enter the stock. ";
+    std::cin >> inputInt;
+    this->setStock(inputInt);
 }
