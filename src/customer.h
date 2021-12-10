@@ -18,4 +18,7 @@ public:
   void setType(char type);
 
   virtual void addData();
+
+
+  virtual void show();
 };

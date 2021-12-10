@@ -16,7 +16,16 @@ void Customer::setType(char type) { this->type = type; }
 void Customer::addData() {
   std::string inputStr;
   std::cout << "What's the address. ";
+  //TODO address is a line not a single string
+  std::getline(std::cin, inputStr); //empty buffer
   std::getline(std::cin, inputStr);
   this->setAddress(inputStr);
   this->setType('U');
+}
+
+void Customer::show() {
+  std::cout << "===============Customer=====================\n";
+  std::cout << "Type: " << this->getType() << std::endl;
+  std::cout << "Name: " << this->getName() << std::endl;
+  std::cout << "address: " << this->getAddress() << std::endl;
 }

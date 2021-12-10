@@ -15,4 +15,6 @@ public:
   void setVolumeDiscount(int newDiscount);
 
   virtual void addData() override;
+
+  virtual void show() override;
 };

@@ -166,6 +166,8 @@ void addCustomer(TireCenter &center) {
   std::string inputStr;
   int inputInt, counter;
   std::cout << "what's the name of the new customer? ";
+  std::cin >> inputStr;
+  std::cin.ignore();
   auto exist = searchCustomer(center, inputStr);
   if (exist.size() > 0) {
     do {
@@ -174,7 +176,7 @@ void addCustomer(TireCenter &center) {
       for (auto e : exist) {
         std::cout << counter++ << ". " << e->getName() << std::endl;
       }
-      std::cout << "Are you sure you wanna add " << inputStr
+      std::cout << "Are you sure you wanna add: " << inputStr
                 << " 1. yes 2. no ";
       std::cin >> inputInt;
     } while (inputInt < 1 || inputInt > 2);
@@ -183,11 +185,14 @@ void addCustomer(TireCenter &center) {
   }
 
   do {
-    std::cout << "is this customer a company? 1. yes 2. no";
-    std::cin >> inputInt;
-  } while (inputInt < 1 || inputInt > 2);
+      //TODO use this to get rid of issues when entering a string (this would create a shit storm cus endl isn't ignored
+    std::cout << "is this customer a company? 1. yes 2. no ";
+    inputInt = std::cin.get();
+    std::cout << inputInt;
+    //character value of 1 and 2
+  } while (inputInt < 49 || inputInt >50);
   Customer *cust;
-  if (inputInt == 1) {
+  if (inputInt == 49) {
     cust = new Company();
   } else {
     cust = new Customer();
@@ -199,7 +204,49 @@ void addCustomer(TireCenter &center) {
   center.setCustomers(customers);
 }
 
-void deleteCustomer();
+void deleteCustomer(TireCenter &center) {
+  std::string query;
+
+  std::cout << "what is the name of the customer you want to delete? ";
+  std::cin >> query;
+  std::cout << query;
+  auto customers = searchCustomer(center, query);
+  if (customers.size() == 0) {
+    return;
+  }
+  int inputInt;
+  int counter;
+  do {
+    counter = 1;
+    for (auto cust : customers) {
+      std::cout << counter++ << ". " << cust->getName() << std::endl;
+    }
+    std::cout << "enter a number to select an item to delete. ";
+    std::cin >> inputInt;
+  } while (inputInt >= counter || inputInt <= 0);
+  auto del = customers[--inputInt];
+  customers = center.getCustomer();
+  counter = 0;
+  for (auto art : customers) {
+    if (art == del) {
+      do {
+        del->show();
+        std::cout << "Are you sure you wanna delete this? 1. yes 2. no";
+        std::cin >> inputInt;
+      } while (inputInt != 1 && inputInt != 2);
+      if (inputInt == 1) {
+        delete art;
+        customers.erase(customers.begin() + counter);
+        center.setCustomers(customers);
+        return;
+      } else {
+        return;
+      }
+    }
+    counter++;
+  }
+}
+
 void changeCustomer();
 void placeOrder();
 void checkInvoices();
@@ -236,6 +283,9 @@ int main(void) {
   auto center = TireCenter(DATAPATH);
   auto art = center.getArticles();
   auto beep = new Tire;
+  addCustomer(center);
+  addCustomer(center);
+  deleteCustomer(center);
   // beep->setName("beep");
   // beep->setType('T');
   // art.push_back(beep);

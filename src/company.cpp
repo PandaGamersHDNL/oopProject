@@ -24,3 +24,9 @@ void Company::addData() {
   std::cin >> inputInt;
   this->setVolumeDiscount(inputInt);
 }
+
+void Company::show() {
+  Customer::show();
+  std::cout << "VAT: " << this->getVAT() << std::endl;
+  std::cout << "Volume discount: " << this->getVolumeDiscount() << std::endl;
+}
