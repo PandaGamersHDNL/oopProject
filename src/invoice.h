@@ -1,29 +1,28 @@
 #pragma once
-#include <vector>
-#include "customer.h"
 #include "article.h"
+#include "customer.h"
+#include <vector>
 
-class Invoice
-{
+class Invoice {
 private:
-    Customer customer;
-    std::vector<Article> articles;
-    float price;
-    int discount;
+  Customer customer;
+  std::vector<Article> articles;
+  float price;
+  int discount;
+
 public:
+  Customer getCustomer();
+  void setCustomer(Customer customer);
 
-    Customer getCustomer();
-    void setCustomer(Customer customer);
+  std::vector<Article> getArticles();
+  void setArticles(std::vector<Article>);
 
-    std::vector<Article> getArticles();
-    void setArticles(std::vector<Article>);
+  float getPrice();
+  void setPrice(float price);
 
-    float getPrice();
-    void setPrice(float price);
+  int getDiscount();
+  void setDiscount(int discount);
 
-    int getDiscount();
-    void setDiscount(int discount);
-
-    float calculateDiscount();
-    float calculatePrice();
+  float calculateDiscount();
+  float calculatePrice();
 };

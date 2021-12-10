@@ -2,43 +2,43 @@
 #include <string>
 #include <vector>
 
-class Article
-{
+class Article {
 private:
-    std::string name;
-    std::string manufacturer;
-    int stock;
-    int diameter;
-    float price;
-    char type;
+  std::string name;
+  std::string manufacturer;
+  int stock;
+  int diameter;
+  float price;
+  char type;
+
 public:
-    std::string getName();
-    void setName(std::string name);
+  std::string getName();
+  void setName(std::string name);
 
-    std::string getManufacturer();
-    void setManufacturer(std::string manufacturer);
+  std::string getManufacturer();
+  void setManufacturer(std::string manufacturer);
 
-    int getStock();
-    void setStock(int stock);
+  int getStock();
+  void setStock(int stock);
 
-    int getDiameter();
-    void setDiameter(int diameter);
-    
-    float getPrice();
-    void setPrice(float price);
+  int getDiameter();
+  void setDiameter(int diameter);
 
-    char getType();
-    void setType(char type);
+  float getPrice();
+  void setPrice(float price);
 
-    void articleData();
+  char getType();
+  void setType(char type);
 
-    //TODO virtual destructors?
-    virtual void show();
+  void articleData();
 
-    virtual std::vector<std::string> getProperties();
+  // TODO virtual destructors?
+  virtual void show();
 
-    virtual void changeProperty(int propIndex);
+  virtual std::vector<std::string> getProperties();
 
-    virtual void loadData(std::ifstream& file);
-    virtual void saveData(std::ofstream& file);
+  virtual void changeProperty(int propIndex);
+
+  virtual void loadData(std::ifstream &file);
+  virtual void saveData(std::ofstream &file);
 };

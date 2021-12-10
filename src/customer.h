@@ -1,22 +1,21 @@
 #pragma once
 #include <string>
 
-class Customer
-{
+class Customer {
 private:
-    std::string name;
-    std::string address;
-    char type;
+  std::string name;
+  std::string address;
+  char type;
+
 public:
+  std::string getName();
+  void setName(std::string name);
 
-    std::string getName();
-    void setName(std::string name);
+  std::string getAddress();
+  void setAddress(std::string address);
 
-    std::string getAddress();
-    void setAddress(std::string address);
+  char getType();
+  void setType(char type);
 
-    char getType();
-    void setType(char type);
-
-    virtual void addData();
+  virtual void addData();
 };

@@ -1,10 +1,9 @@
-#include <vector>
 #include "options.h"
+#include <vector>
 
-class Employee
-{
+class Employee {
 private:
-    //extra info of employee name, birthday, etc.
+  // extra info of employee name, birthday, etc.
 public:
-    static std::vector<Options> permissions();
+  static std::vector<Options> permissions();
 };

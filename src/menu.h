@@ -1,22 +1,20 @@
 #pragma once
 
-#include "options.h"
 #include "article.h"
+#include "options.h"
+#include <iostream>
 #include <string>
 #include <vector>
-#include <iostream>
 
-class Menu
-{
+class Menu {
 private:
-    std::vector<Options> options;
+  std::vector<Options> options;
+
 public:
-    Menu();
-    std::string optionsToString(Options option);
-    Options showOptionMenu();
-    //employee/customer Menu
-    void permissionMenu(); //temp menu to pick if you're owner should be detected from who calls the menu
-
-
+  Menu();
+  std::string optionsToString(Options option);
+  Options showOptionMenu();
+  // employee/customer Menu
+  void permissionMenu(); // temp menu to pick if you're owner should be detected
+                         // from who calls the menu
 };
-

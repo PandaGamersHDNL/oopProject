@@ -1,10 +1,9 @@
-#include <vector>
 #include "options.h"
+#include <vector>
 
-class Owner
-{
+class Owner {
 private:
-    /* data */
+  /* data */
 public:
-    static std::vector<Options> permissions();
+  static std::vector<Options> permissions();
 };
