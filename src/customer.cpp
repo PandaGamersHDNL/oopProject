@@ -1,4 +1,5 @@
 #include "customer.h"
+#include <iostream>
 
 std::string Customer::getName() 
 {
@@ -28,4 +29,13 @@ char Customer::getType()
 void Customer::setType(char type) 
 {
     this->type = type;
+}
+
+void Customer::addData()
+{
+    std::string inputStr;
+    std::cout << "What's the address. ";
+    std::getline(std::cin, inputStr);
+    this->setAddress(inputStr);
+    this->setType('U');
 }

@@ -2,7 +2,7 @@
 #include <string>
 #include "customer.h"
 
-class Company : Customer
+class Company : public Customer
 {
 private:
     std::string VAT;
@@ -13,4 +13,6 @@ public:
 
     int getVolumeDiscount();
     void setVolumeDiscount(int newDiscount);
+
+    virtual void addData() override;
 };

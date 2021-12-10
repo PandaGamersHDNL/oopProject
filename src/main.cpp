@@ -3,6 +3,7 @@
 #include "options.h"
 #include "rim.h"
 #include "tire.h"
+#include "company.h"
 
 #define DATAPATH "C:/Users/panda/Documents/oopProject/data"
 
@@ -170,8 +171,9 @@ void changeArticle(TireCenter& center) {
 	change->changeProperty(--inputInt);
 	change->show();
 }
-void checkInvoices();
+
 void updateStock();
+
 std::vector<Customer*> searchCustomer(TireCenter& center, std::string query) {
 	auto customers = center.getCustomer();
 	std::vector<Customer*> found;
@@ -184,14 +186,53 @@ std::vector<Customer*> searchCustomer(TireCenter& center, std::string query) {
 	}
 	return found;
 }
-void placeOrder();
-void addCustomer(TireCenter& center) {
-	center.getCustomer();
 
+void addCustomer(TireCenter& center) {
+	std::string inputStr; int inputInt, counter;
+	std::cout << "what's the name of the new customer? ";
+	auto exist = searchCustomer(center, inputStr);
+	if (exist.size() > 0)
+	{
+		do
+		{
+			counter = 1;
+			std::cout << "i found these customers with the same name\n";
+			for (auto e : exist)
+			{
+				std::cout << counter++ << ". " << e->getName() << std::endl;
+			}
+			std::cout << "Are you sure you wanna add " << inputStr << " 1. yes 2. no ";
+			std::cin >> inputInt;
+		} while (inputInt < 1 || inputInt > 2);
+		if (inputInt == 2)
+			return;
+	}
+
+	do {
+		std::cout << "is this customer a company? 1. yes 2. no";
+		std::cin >> inputInt;
+	} while (inputInt < 1 || inputInt > 2);
+	Customer* cust;
+	if (inputInt == 1)
+	{
+		cust = new Company();
+	}
+	else
+	{
+		cust = new Customer();
+	}
+	cust->setName(inputStr);
+	cust->addData();
+	auto customers = center.getCustomer();
+	customers.push_back(cust);
+	center.setCustomers(customers);
 	
 }
+
 void deleteCustomer();
 void changeCustomer();
+void placeOrder();
+void checkInvoices();
 
 
 void performAction(TireCenter& center,Options option)
