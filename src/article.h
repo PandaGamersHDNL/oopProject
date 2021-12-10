@@ -38,4 +38,7 @@ public:
     virtual std::vector<std::string> getProperties();
 
     virtual void changeProperty(int propIndex);
+
+    virtual void loadData(std::ifstream& file);
+    virtual void saveData(std::ofstream& file);
 };

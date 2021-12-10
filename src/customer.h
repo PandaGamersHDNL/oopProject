@@ -17,4 +17,6 @@ public:
 
     char getType();
     void setType(char type);
+
+    virtual void addData();
 };

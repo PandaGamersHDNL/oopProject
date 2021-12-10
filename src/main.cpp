@@ -4,10 +4,11 @@
 #include "rim.h"
 #include "tire.h"
 
-#define DATAPATH "C:/Users/panda/Desktop/Classes/oop/project/data"
+#define DATAPATH "C:/Users/panda/Documents/oopProject/data"
 
 std::vector<Article*> searchArticle(TireCenter& center, std::string query)
 {
+	//TODO add filters
 	std::vector<Article*> found;
 	auto articles = center.getArticles();
 	for (auto article : articles)
@@ -169,10 +170,26 @@ void changeArticle(TireCenter& center) {
 	change->changeProperty(--inputInt);
 	change->show();
 }
-void placeOrder();
 void checkInvoices();
 void updateStock();
-void addCustomer();
+std::vector<Customer*> searchCustomer(TireCenter& center, std::string query) {
+	auto customers = center.getCustomer();
+	std::vector<Customer*> found;
+	for (auto customer : customers)
+	{
+		if (std::string::npos != customer->getName().find(query))
+		{
+			found.push_back(customer);
+		}
+	}
+	return found;
+}
+void placeOrder();
+void addCustomer(TireCenter& center) {
+	center.getCustomer();
+
+	
+}
 void deleteCustomer();
 void changeCustomer();
 
@@ -212,19 +229,20 @@ int main(void)
     auto center = TireCenter(DATAPATH);
 	auto art = center.getArticles();
 	auto beep = new Tire;
-	beep->setName("beep");
-	art.push_back(beep);
-	auto boop = new Rim;
-	boop->setName("boop");
-	art.push_back(boop);
-	center.setArticles(art);
-	center.setName("tirecenter");
-	center.setAddress("beep street 2");
+	//beep->setName("beep");
+	//beep->setType('T');
+	//art.push_back(beep);
+	//auto boop = new Rim;
+	//boop->setName("boop");
+	//boop->setType('R');
+	//art.push_back(boop);
+	//center.setArticles(art);
+	//std::cout << center.getAddress() << std::endl << center.getName() << std::endl << "beep";
     //Menu menu;
 	// test these: 
 	//addArticle(center);
+	//addArticle(center);
 	//deleteArticle(center);
-	changeArticle(center);
 	center.saveData();
     return 0;
 }

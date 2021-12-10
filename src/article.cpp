@@ -1,5 +1,6 @@
 #include "article.h"
 #include <iostream>
+#include <fstream>
 
 
 std::string Article::getName() 
@@ -113,12 +114,32 @@ case 4:
     std::cin >> inputFloat;
     this->setPrice(inputFloat);
     break;
-case 5:
-    std::cout << "enter the new type value. ";
-    std::cin >> inputChar;
-    this->setType(inputChar);
-        break;
     }
+}
+
+void Article::loadData(std::ifstream& file)
+{
+    std::string output; int outputInt; float outputFloat;
+    std::getline(file, output);
+    this->setName(output);
+    std::getline(file, output);
+    this->setManufacturer(output);
+    file >> outputInt;
+    this->setDiameter(outputInt);
+    file >> outputFloat;
+    this->setPrice(outputFloat);
+    file >> outputInt;
+    this->setStock(outputInt);
+}
+
+void Article::saveData(std::ofstream& file)
+{
+    file << this->getType() << std::endl;
+    file << this->getName() << std::endl;
+    file << this->getManufacturer() << std::endl;
+    file << this->getDiameter() << std::endl;
+    file << this->getPrice() << std::endl;
+    file << this->getStock() << std::endl;
 }
 
 void Article::articleData() {
