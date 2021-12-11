@@ -281,11 +281,11 @@ void performAction(TireCenter &center, Options option) {
 
 int main(void) {
   auto center = TireCenter(DATAPATH);
-  auto art = center.getArticles();
-  auto beep = new Tire;
-  addCustomer(center);
-  addCustomer(center);
-  deleteCustomer(center);
+  //auto art = center.getArticles();
+  //auto beep = new Tire;
+  //addCustomer(center);
+  //addCustomer(center);
+  //deleteCustomer(center);
   // beep->setName("beep");
   // beep->setType('T');
   // art.push_back(beep);

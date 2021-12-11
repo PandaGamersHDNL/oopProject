@@ -17,4 +17,7 @@ public:
   virtual void addData() override;
 
   virtual void show() override;
+
+  virtual void loadData(std::ifstream &file);
+  virtual void saveData(std::ofstream &file);
 };

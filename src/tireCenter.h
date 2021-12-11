@@ -22,6 +22,9 @@ public:
   void loadData(std::string path);
   void saveData();
 
+  void loadCusomers();
+  void saveCustomers();
+
   void loadArticles();
   void saveArticles();
 

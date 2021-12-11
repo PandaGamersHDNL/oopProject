@@ -1,5 +1,6 @@
 #include "customer.h"
 #include <iostream>
+#include <fstream>
 
 std::string Customer::getName() { return this->name; }
 
@@ -28,4 +29,18 @@ void Customer::show() {
   std::cout << "Type: " << this->getType() << std::endl;
   std::cout << "Name: " << this->getName() << std::endl;
   std::cout << "address: " << this->getAddress() << std::endl;
+}
+
+void Customer::loadData(std::ifstream &file) {
+  std::string input;
+  std::getline(file, input);
+  this->setName(input);
+  std::getline(file, input);
+  this->setAddress(input);
+}
+
+void Customer::saveData(std::ofstream &file) {
+  file << this->getType() << std::endl;
+  file << this->getName() << std::endl; 
+  file << this->getAddress() << std::endl;
 }
