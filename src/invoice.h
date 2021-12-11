@@ -11,6 +11,8 @@ private:
   int discount;
 
 public:
+  virtual ~Invoice() = default;
+
   Customer getCustomer();
   void setCustomer(Customer customer);
 

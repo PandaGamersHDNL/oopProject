@@ -12,6 +12,8 @@ private:
 
 public:
   Menu();
+  virtual ~Menu() = default;
+
   std::string optionsToString(Options option);
   Options showOptionMenu();
   // employee/customer Menu

@@ -8,6 +8,8 @@ private:
   char type;
 
 public:
+  virtual ~Customer() = default;
+
   std::string getName();
   void setName(std::string name);
 
@@ -18,7 +20,6 @@ public:
   void setType(char type);
 
   virtual void addData();
-
 
   virtual void show();
 

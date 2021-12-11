@@ -12,6 +12,8 @@ private:
   char type;
 
 public:
+  virtual ~Article() = default;
+
   std::string getName();
   void setName(std::string name);
 

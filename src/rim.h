@@ -9,6 +9,8 @@ private:
   int width;
 
 public:
+  virtual ~Rim() = default;
+
   int getWidth();
   void setWidth(int w);
 

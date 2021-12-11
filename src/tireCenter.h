@@ -17,7 +17,7 @@ private:
 public:
   TireCenter(std::string path);
   TireCenter();
-  ~TireCenter();
+  virtual ~TireCenter() = default;
 
   void loadData(std::string path);
   void saveData();

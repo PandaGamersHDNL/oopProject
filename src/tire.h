@@ -10,6 +10,8 @@ private:
   char season;
 
 public:
+  virtual ~Tire() = default;
+
   int getWidth();
   void setWidth(int width);
 
