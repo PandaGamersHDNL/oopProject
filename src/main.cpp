@@ -247,7 +247,38 @@ void deleteCustomer(TireCenter &center) {
   }
 }
 
-void changeCustomer();
+void changeCustomer(TireCenter &center) {
+  std::string inputStr;
+  std::cout << "Which Customer are you looking to change? ";
+  std::cin >> inputStr;
+
+  auto customers = searchCustomer(center, inputStr);
+  if (customers.size() == 0) {
+    return;
+  }
+  int counter, inputInt;
+  do {
+    counter = 1;
+    for (auto cust : customers) {
+      std::cout << counter++ << ". " << cust->getName() << std::endl;
+    }
+    std::cout << "select an article to change. ";
+    std::cin >> inputInt;
+  } while (inputInt < 1 || inputInt >= counter);
+
+  auto change = customers[--inputInt];
+  change->show();
+  counter = 1;
+  for (auto prop : change->getProperties()) {
+    std::cout << counter++ << ". " << prop << std::endl;
+  }
+
+  std::cout << "Enter the number of the property you want to change. ";
+  std::cin >> inputInt;
+  change->changeProperty(--inputInt);
+  change->show();
+}
+
 void placeOrder();
 void checkInvoices();
 
@@ -301,6 +332,7 @@ int main(void) {
   // addArticle(center);
   // addArticle(center);
   // deleteArticle(center);
+  changeCustomer(center);
   center.saveData();
   return 0;
 }

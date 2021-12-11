@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <vector>
 
 class Customer {
 private:
@@ -22,6 +23,9 @@ public:
   virtual void addData();
 
   virtual void show();
+
+  virtual std::vector<std::string> getProperties();
+  virtual void changeProperty(int propertyIndex);
 
   virtual void loadData(std::ifstream &file);
   virtual void saveData(std::ofstream &file);

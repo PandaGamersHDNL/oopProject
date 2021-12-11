@@ -1,7 +1,7 @@
 #include "tireCenter.h"
 #include "article.h"
-#include "customer.h"
 #include "company.h"
+#include "customer.h"
 #include "invoice.h"
 #include "rim.h"
 #include "tire.h"
@@ -11,9 +11,9 @@
 #define FILENAME "tirecenter.txt"
 
 TireCenter::TireCenter() {}
-TireCenter::~TireCenter() {
+/* TireCenter::~TireCenter() {
   // TODO save before delete
-}
+}*/
 TireCenter::TireCenter(std::string path) {
   this->loadData(path);
   // load data from file
@@ -21,20 +21,20 @@ TireCenter::TireCenter(std::string path) {
 
 void TireCenter::loadData(std::string path) {
   std::fstream file(path + "/" + FILENAME);
+  this->path = path;
   if (file.is_open()) {
     std::cout << "load data";
-    this->path = path;
     std::string text;
     std::getline(file, text);
     this->setName(text);
     std::getline(file, text);
     this->setAddress(text);
-    loadCusomers();
-    // load invoices
-    loadArticles();
   } else {
     // TODO create tirecenter
   }
+  loadCusomers();
+  loadInvoices();
+  loadArticles();
 }
 
 void TireCenter::saveData() {
@@ -81,9 +81,16 @@ void TireCenter::saveCustomers() {
   for (auto cust : this->getCustomer()) {
     std::cout << cust->getName() << std::endl;
     cust->saveData(file);
-    delete cust;
+    // delete cust;
   }
 }
+
+void TireCenter::loadInvoices() { auto invoice = new Invoice(); 
+std::ifstream file(this->path + "/invoices.txt");
+
+}
+
+void TireCenter::saveInvoices() {}
 
 void TireCenter::loadArticles() {
   std::ifstream file(this->path + "/articles.txt");
@@ -114,11 +121,9 @@ void TireCenter::saveArticles() {
   for (auto art : this->getArticles()) {
     std::cout << art->getName() << std::endl;
     art->saveData(file);
-    delete art;
+    // delete art;
   }
 }
-
-
 
 std::string TireCenter::getName() { return this->name; }
 

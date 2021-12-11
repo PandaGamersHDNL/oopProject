@@ -1,6 +1,7 @@
 #include "company.h"
-#include <iostream>
 #include <fstream>
+#include <iostream>
+#include <vector>
 
 std::string Company::getVAT() { return this->VAT; }
 
@@ -32,9 +33,38 @@ void Company::show() {
   std::cout << "Volume discount: " << this->getVolumeDiscount() << std::endl;
 }
 
+std::vector<std::string> Company::getProperties() {
+  std::vector<std::string> properties = Customer::getProperties();
+  properties.push_back("VAT");
+  properties.push_back("VolumeDiscount");
+  return properties;
+}
+
+void Company::changeProperty(int propertyIndex) {
+  const int customerProp = 2;
+  std::string inputStr;
+  Customer::changeProperty(propertyIndex);
+  //std::cin >> std::ws; // shouldn't have to be cleared gets cleared in customer
+  switch (propertyIndex) {
+  case customerProp:
+    std::cout << "enter the new VAT: ";
+    std::cin >> std::ws;
+    std::cin >> inputStr;
+    this->setVAT(inputStr);
+    break;
+  case customerProp +1:
+    int inputInt;
+    std::cout << "what is the new volume discount? ";
+    std::cin >> std::ws;
+    std::cin >> inputInt;
+    this->setVolumeDiscount(inputInt);
+    break;
+  }
+}
+
 void Company::loadData(std::ifstream &file) {
   Customer::loadData(file);
-	std::string inputStr;
+  std::string inputStr;
   int inputInt;
 
   std::getline(file, inputStr);

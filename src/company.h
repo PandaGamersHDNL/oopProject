@@ -18,6 +18,10 @@ public:
 
   virtual void show() override;
 
+  virtual std::vector<std::string> getProperties();
+
+   virtual void changeProperty(int propertyIndex);
+
   virtual void loadData(std::ifstream &file);
   virtual void saveData(std::ofstream &file);
 };

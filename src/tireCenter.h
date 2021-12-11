@@ -25,6 +25,9 @@ public:
   void loadCusomers();
   void saveCustomers();
 
+  void loadInvoices();
+  void saveInvoices();
+
   void loadArticles();
   void saveArticles();
 
