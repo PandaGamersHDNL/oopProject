@@ -9,7 +9,9 @@ private:
   std::vector<Article*> articles;
   float price;
   int discount;
-
+  
+  float calculateDiscount();
+  float calculatePrice();
 public:
   virtual ~Invoice() = default;
 
@@ -25,6 +27,5 @@ public:
   int getDiscount();
   void setDiscount(int discount);
 
-  float calculateDiscount();
-  float calculatePrice();
+
 };
