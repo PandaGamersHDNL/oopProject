@@ -46,14 +46,14 @@ Article *createArticle(TireCenter &center) {
   } while (intInput > 2 || intInput < 1);
   if (intInput == 1) {
     auto rim = new Rim();
-    rim->setType('R');
+    rim->setType();
     rim->setName(strInput);
     rim->articleData();
     rim->rimData();
     return rim;
   } else if (intInput == 2) {
     auto tire = new Tire();
-    tire->setType('T');
+    tire->setType();
     tire->setName(strInput);
     tire->articleData();
     tire->tireData();
@@ -138,7 +138,7 @@ void changeArticle(TireCenter &center) {
   auto change = articles[--inputInt];
   change->show();
   counter = 1;
-  for (auto prop : change->getProperties()) {
+  for (auto &prop : change->getProperties()) {
     std::cout << counter++ << ". " << prop << std::endl;
   }
 
@@ -268,7 +268,7 @@ void changeCustomer(TireCenter &center) {
   auto change = customers[--inputInt];
   change->show();
   counter = 1;
-  for (auto prop : change->getProperties()) {
+  for (auto &prop : change->getProperties()) {
     std::cout << counter++ << ". " << prop << std::endl;
   }
 

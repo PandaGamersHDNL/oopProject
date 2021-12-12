@@ -9,6 +9,8 @@ private:
   int stock;
   int diameter;
   float price;
+
+protected:
   char type;
 
 public:
@@ -30,7 +32,7 @@ public:
   void setPrice(float price);
 
   char getType();
-  void setType(char type);
+  virtual void setType() = 0;
 
   void articleData();
 

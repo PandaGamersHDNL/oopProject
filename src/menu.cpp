@@ -38,6 +38,8 @@ std::string Menu::optionsToString(Options option) {
   case Options::updateStock:
     return "Update stock";
     break;
+  default:
+    return "not a valid option";
   }
 }
 

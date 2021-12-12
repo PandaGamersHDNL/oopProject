@@ -30,5 +30,7 @@ public:
 
   virtual void changeProperty(int propIndex) override;
 
+  virtual void setType() override;
+
   void tireData();
 };

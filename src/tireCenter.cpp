@@ -101,13 +101,13 @@ void TireCenter::loadArticles() {
     if (type[0] == 'R') {
       auto tire = new Tire();
       tire->loadData(file);
-      tire->setType('R');
+      tire->setType();
       artics.push_back(tire);
       tire->show();
     } else if (type[0] == 'T') {
       auto rim = new Rim();
       rim->loadData(file);
-      rim->setType('T');
+      rim->setType();
       artics.push_back(rim);
       rim->show();
     }

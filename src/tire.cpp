@@ -69,6 +69,8 @@ void Tire::changeProperty(int propIndex) {
   }
 }
 
+void Tire::setType() { this->type = 'T'; }
+
 void Tire::tireData() {
   int inputInt;
   char inputChar;

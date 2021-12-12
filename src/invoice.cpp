@@ -6,9 +6,9 @@ Customer Invoice::getCustomer() { return this->customer; }
 
 void Invoice::setCustomer(Customer customer) { this->customer = customer; }
 
-std::vector<Article> Invoice::getArticles() { return this->articles; }
+std::vector<Article*> Invoice::getArticles() { return this->articles; }
 
-void Invoice::setArticles(std::vector<Article> articles) {
+void Invoice::setArticles(std::vector<Article*> articles) {
   this->articles = articles;
 }
 

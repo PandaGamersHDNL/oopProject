@@ -37,7 +37,6 @@ void Rim::changeProperty(int propIndex) {
   const int sizeArt = 5;
   int inputInt;
   std::string inputStr;
-  char inputChar;
   switch (propIndex) {
   case sizeArt + 0:
     do {
@@ -58,6 +57,8 @@ void Rim::changeProperty(int propIndex) {
     break;
   }
 }
+
+void Rim::setType() { this->type = 'R'; }
 
 void Rim::rimData() {
   int inputInt;

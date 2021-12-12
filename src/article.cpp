@@ -26,8 +26,6 @@ void Article::setPrice(float price) { this->price = price; }
 
 char Article::getType() { return this->type; }
 
-void Article::setType(char type) { this->type = type; }
-
 void Article::show() {
   std::cout << "Diameter: " << this->getDiameter() << std::endl;
   std::cout << "Manufacturer: " << this->getManufacturer() << std::endl;
@@ -45,7 +43,7 @@ void Article::changeProperty(int propIndex) {
   std::string inputStr;
   int inputInt;
   float inputFloat;
-  char inputChar;
+
   switch (propIndex) {
   case 0:
     std::cout << "enter the new name value. ";
@@ -104,7 +102,6 @@ void Article::articleData() {
   int inputInt;
   std::string inputStr;
   float inputFloat;
-  char inputChar;
 
   std::cout << "please enter the diameter. ";
   std::cin >> inputInt;
