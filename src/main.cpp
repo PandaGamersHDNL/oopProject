@@ -44,7 +44,6 @@ Article *createArticle(TireCenter &center) {
     std::cout << "What type 1. rim or 2. tire?";
     std::cin >> intInput;
   } while (intInput > 2 || intInput < 1);
-  Article *art = nullptr;
   if (intInput == 1) {
     auto rim = new Rim();
     rim->setType('R');
@@ -279,7 +278,9 @@ void changeCustomer(TireCenter &center) {
   change->show();
 }
 
-void placeOrder();
+void placeOrder() {
+
+}
 void checkInvoices();
 
 void performAction(TireCenter &center, Options option) {

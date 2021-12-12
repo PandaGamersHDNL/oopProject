@@ -1,6 +1,6 @@
 #pragma once
 
-const enum class Options {
+enum class Options {
   addArt,
   deleteArt,
   changeArt,
