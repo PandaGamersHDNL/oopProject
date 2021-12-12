@@ -36,7 +36,6 @@ public:
 
   void articleData();
 
-  // TODO virtual destructors?
   virtual void show();
 
   virtual std::vector<std::string> getProperties();

@@ -150,6 +150,7 @@
     <ClInclude Include="..\..\src\rim.h" />
     <ClInclude Include="..\..\src\tire.h" />
     <ClInclude Include="..\..\src\tireCenter.h" />
+    <ClInclude Include="..\..\src\actions.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\article.cpp" />
@@ -163,6 +164,7 @@
     <ClCompile Include="..\..\src\rim.cpp" />
     <ClCompile Include="..\..\src\tire.cpp" />
     <ClCompile Include="..\..\src\tireCenter.cpp" />
+    <ClCompile Include="..\..\src\actions.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

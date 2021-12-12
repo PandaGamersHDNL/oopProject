@@ -40,9 +40,9 @@ std::vector<std::string> Customer::getProperties() {
 }
 
 void Customer::changeProperty(int propertyIndex) {
-  //clear buffer
+  // clear buffer
   std::string inputStr;
-    switch (propertyIndex) {
+  switch (propertyIndex) {
   case 0:
     std::cout << "what is the new name? ";
     std::cin >> std::ws;

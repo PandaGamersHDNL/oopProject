@@ -2,13 +2,13 @@
 #include "article.h"
 #include "customer.h"
 
-Customer Invoice::getCustomer() { return this->customer; }
+Customer *Invoice::getCustomer() { return this->customer; }
 
-void Invoice::setCustomer(Customer customer) { this->customer = customer; }
+void Invoice::setCustomer(Customer *customer) { this->customer = customer; }
 
-std::vector<Article*> Invoice::getArticles() { return this->articles; }
+std::vector<Article *> Invoice::getArticles() { return this->articles; }
 
-void Invoice::setArticles(std::vector<Article*> articles) {
+void Invoice::setArticles(std::vector<Article *> articles) {
   this->articles = articles;
 }
 
@@ -19,6 +19,8 @@ void Invoice::setPrice(float price) { this->price = price; }
 int Invoice::getDiscount() { return this->discount; }
 
 void Invoice::setDiscount(int discount) { this->discount = discount; }
+
+void Invoice::addData() {}
 
 float Invoice::calculateDiscount() {
   // TODO

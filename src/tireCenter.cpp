@@ -85,9 +85,9 @@ void TireCenter::saveCustomers() {
   }
 }
 
-void TireCenter::loadInvoices() { auto invoice = new Invoice(); 
-std::ifstream file(this->path + "/invoices.txt");
-
+void TireCenter::loadInvoices() {
+  auto invoice = new Invoice();
+  std::ifstream file(this->path + "/invoices.txt");
 }
 
 void TireCenter::saveInvoices() {}

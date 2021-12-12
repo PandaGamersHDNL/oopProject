@@ -5,21 +5,22 @@
 
 class Invoice {
 private:
-  Customer customer;
-  std::vector<Article*> articles;
+  Customer *customer;
+  std::vector<Article *> articles;
   float price;
   int discount;
-  
+
   float calculateDiscount();
   float calculatePrice();
+
 public:
   virtual ~Invoice() = default;
 
-  Customer getCustomer();
-  void setCustomer(Customer customer);
+  Customer *getCustomer();
+  void setCustomer(Customer *customer);
 
-  std::vector<Article*> getArticles();
-  void setArticles(std::vector<Article*>);
+  std::vector<Article *> getArticles();
+  void setArticles(std::vector<Article *>);
 
   float getPrice();
   void setPrice(float price);
@@ -27,5 +28,5 @@ public:
   int getDiscount();
   void setDiscount(int discount);
 
-
+  void addData();
 };

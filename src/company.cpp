@@ -44,7 +44,8 @@ void Company::changeProperty(int propertyIndex) {
   const int customerProp = 2;
   std::string inputStr;
   Customer::changeProperty(propertyIndex);
-  //std::cin >> std::ws; // shouldn't have to be cleared gets cleared in customer
+  // std::cin >> std::ws; // shouldn't have to be cleared gets cleared in
+  // customer
   switch (propertyIndex) {
   case customerProp:
     std::cout << "enter the new VAT: ";
@@ -52,7 +53,7 @@ void Company::changeProperty(int propertyIndex) {
     std::cin >> inputStr;
     this->setVAT(inputStr);
     break;
-  case customerProp +1:
+  case customerProp + 1:
     int inputInt;
     std::cout << "what is the new volume discount? ";
     std::cin >> std::ws;
