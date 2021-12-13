@@ -8,7 +8,13 @@
 
 #define DATAPATH "C:/Users/panda/Documents/oopProject/data"
 
-void updateStock();
+void updateStock(Article *art, int amount, bool absolute = false) {
+  if (absolute) {
+    art->setStock(amount);
+  } else {
+    art->setStock(art->getStock() + amount);
+  }
+}
 
 void addCustomer(TireCenter &center) {
   std::string inputStr;
@@ -164,11 +170,11 @@ void placeOrder(TireCenter &center) {
       std::cout << "Select the article. ";
       std::cin >> inputInt;
     } while (inputInt < 1 || inputInt > count);
-
-    auto article = foundArticles[--inputInt]->clone();
-    //TODO updateStock(foundArticles[--inputInt])
+    auto selected = foundArticles[--inputInt];
+    auto article = selected->clone();
     std::cout << "How many of these did they order? ";
     std::cin >> inputInt;
+    updateStock(selected, inputInt);
     article->setStock(inputInt);
     articles.push_back(article);
   }
