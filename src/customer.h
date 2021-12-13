@@ -29,4 +29,6 @@ public:
 
   virtual void loadData(std::ifstream &file);
   virtual void saveData(std::ofstream &file);
+
+  virtual Customer *clone();
 };

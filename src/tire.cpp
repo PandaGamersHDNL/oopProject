@@ -71,6 +71,8 @@ void Tire::changeProperty(int propIndex) {
 
 void Tire::setType() { this->type = 'T'; }
 
+Article *Tire::clone() { return new Tire(*this); }
+
 void Tire::tireData() {
   int inputInt;
   char inputChar;

@@ -70,3 +70,5 @@ void Customer::saveData(std::ofstream &file) {
   file << this->getName() << std::endl;
   file << this->getAddress() << std::endl;
 }
+
+Customer *Customer::clone() { return new Customer(*this); }

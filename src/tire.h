@@ -32,5 +32,7 @@ public:
 
   virtual void setType() override;
 
+  virtual Article *clone() override;
+
   void tireData();
 };

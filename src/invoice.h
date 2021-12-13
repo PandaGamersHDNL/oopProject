@@ -27,6 +27,4 @@ public:
 
   int getDiscount();
   void setDiscount(int discount);
-
-  void addData();
 };

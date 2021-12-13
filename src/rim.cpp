@@ -60,6 +60,8 @@ void Rim::changeProperty(int propIndex) {
 
 void Rim::setType() { this->type = 'R'; }
 
+Article *Rim::clone() { return new Rim(*this); }
+
 void Rim::rimData() {
   int inputInt;
   std::string inputStr;

@@ -131,19 +131,55 @@ void changeCustomer(TireCenter &center) {
 void placeOrder(TireCenter &center) {
   auto invoice = new Invoice();
   std::string query;
-  int count = 0;
+  int count = 0, inputInt=0;
 
   std::cout << "Which customer has placed this order? ";
   std::cin >> query;
   auto foundCust = searchCustomer(center, query);
+  do {
+    count = 1;
+      for (auto fc : foundCust) {
+        std::cout << count++ << ". " << fc->getName() << std::endl;
+      }
+      std::cout << "Select the customer. ";
+      std::cin >> inputInt;
+  } while (inputInt < 1 || inputInt > count);
+  invoice->setCustomer(foundCust[--inputInt]->clone());
 
-  for (auto fc : foundCust) {
-    std::cout << count++ << ". " << fc->getName() << std::endl;
+  std::cout << "how many different articles did they order? ";
+  std::cin >> inputInt;
+  int length = inputInt;
+  auto articles = invoice->getArticles();
+
+  for (int i = 0; i < length; i++) {
+    std::cout << "Enter the name of article nr: " << i << " ";
+    std::cin >> query;
+    auto foundArticles = searchArticle(center, query);
+
+    do {
+      count = 1;
+      for (auto fa : foundArticles) {
+        std::cout << count++ << ". " << fa->getName() << std::endl;
+      }
+      std::cout << "Select the article. ";
+      std::cin >> inputInt;
+    } while (inputInt < 1 || inputInt > count);
+
+    auto article = foundArticles[--inputInt]->clone();
+    //TODO updateStock(foundArticles[--inputInt])
+    std::cout << "How many of these did they order? ";
+    std::cin >> inputInt;
+    article->setStock(inputInt);
+    articles.push_back(article);
   }
+  //TODO set price and discount
+  //invoice->setPrice();
+  //invoice->setDiscount();
 }
 void checkInvoices();
 
 void performAction(TireCenter &center, Options option) {
+    //TODO add lookup customer + lookup article(filters)
   switch (option) {
   case Options::addArt:
     addArticle(center);

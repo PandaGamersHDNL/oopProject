@@ -79,3 +79,5 @@ void Company::saveData(std::ofstream &file) {
   file << this->getVAT() << std::endl;
   file << this->getVolumeDiscount() << std::endl;
 }
+
+Customer *Company::clone() { return new Customer(*this); }

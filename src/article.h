@@ -33,6 +33,8 @@ public:
 
   char getType();
   virtual void setType() = 0;
+  
+  virtual Article *clone() = 0;
 
   void articleData();
 

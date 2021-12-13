@@ -20,8 +20,6 @@ int Invoice::getDiscount() { return this->discount; }
 
 void Invoice::setDiscount(int discount) { this->discount = discount; }
 
-void Invoice::addData() {}
-
 float Invoice::calculateDiscount() {
   // TODO
   float discount = 0;
@@ -29,6 +27,9 @@ float Invoice::calculateDiscount() {
 }
 
 float Invoice::calculatePrice() {
-  // TODO
-  return this->price;
+  float sum = 0.0f;
+  for (auto art : this->getArticles()) {  
+	sum += (art->getPrice() * art->getStock());
+  }
+  return sum;
 }

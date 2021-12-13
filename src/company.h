@@ -24,4 +24,6 @@ public:
 
   virtual void loadData(std::ifstream &file) override;
   virtual void saveData(std::ofstream &file) override;
+
+  virtual Customer* clone() override;
 };
