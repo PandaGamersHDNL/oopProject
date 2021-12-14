@@ -5,10 +5,10 @@
 
 class Invoice {
 private:
-  Customer *customer;
+  Customer *customer =nullptr;
   std::vector<Article *> articles;
-  float price;
-  int discount;
+  float price = 0.0f;
+  int discount = 0;
 
   float calculateDiscount();
   float calculatePrice();
@@ -23,8 +23,13 @@ public:
   void setArticles(std::vector<Article *>);
 
   float getPrice();
-  void setPrice(float price);
+  void setPrice();
 
   int getDiscount();
-  void setDiscount(int discount);
+  void setDiscount();
+
+  void show();
+
+  void saveData();
+  void loadData();
 };

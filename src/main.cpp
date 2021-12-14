@@ -158,9 +158,9 @@ void placeOrder(TireCenter &center) {
   auto articles = invoice->getArticles();
 
   for (int i = 0; i < length; i++) {
-    std::cout << "Enter the name of article nr: " << i << " ";
+    std::cout << "searching article nr: " << i << std::endl;
     std::cin >> query;
-    auto foundArticles = searchArticle(center, query);
+    auto foundArticles = searchArticle(center);
 
     do {
       count = 1;
@@ -179,10 +179,14 @@ void placeOrder(TireCenter &center) {
     articles.push_back(article);
   }
   //TODO set price and discount
-  //invoice->setPrice();
-  //invoice->setDiscount();
+  invoice->setPrice();
+  invoice->setDiscount();
 }
-void checkInvoices();
+void checkInvoices(TireCenter &center) {
+  for (auto invoice : center.getInvoice()) {
+    invoice->show();
+  }
+}
 
 void performAction(TireCenter &center, Options option) {
     //TODO add lookup customer + lookup article(filters)
@@ -197,16 +201,23 @@ void performAction(TireCenter &center, Options option) {
     changeArticle(center);
     break;
   case Options::checkInvoice:
+    checkInvoices(center);
     break;
   case Options::placeOrder:
+    placeOrder(center);
     break;
   case Options::deleteCust:
+    deleteCustomer(center);
     break;
   case Options::changeCust:
+    changeCustomer(center);
     break;
   case Options::addCust:
+    addCustomer(center);
     break;
   case Options::updateStock:
+    
+    //updateStock();
     break;
   default:
     break;

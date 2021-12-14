@@ -3,29 +3,55 @@
 #include "tire.h"
 #include <iostream>
 
-std::vector<Article *> searchArticle(TireCenter &center, std::string query) {
-  // TODO add filters
+std::vector<Article *> searchArticle(TireCenter &center) {
+  int inputInt;
+  do {
+    std::cout << "select a filter. 1. by name 2. by diameter 3. by article type 4. all";
+    std::cin >> inputInt;
+  } while (inputInt < 1 || inputInt > 4);
+
   std::vector<Article *> found;
   auto articles = center.getArticles();
-  for (auto article : articles) {
-    if (std::string::npos != article->getName().find(query)) {
-      found.push_back(article);
+  std::string query;
+  switch (inputInt) {
+  case 1:
+    std::cout << "enter the name: ";
+    std::cin >> query;
+      for (auto article : articles) {
+        if (std::string::npos != article->getName().find(query)) {
+          found.push_back(article);
+         
+        }
+      }
+    
+  case 2:
+    std::cout << "enter the diameter: ";
+    std::cin >> inputInt;
+    for (auto article : articles) {
+      if (article->getDiameter() == inputInt) {
+        found.push_back(article);
+      }
     }
+  case 3:
+    do {
+    std::cout << "enter the article type: T (Tire) or R (Rim) ";
+    std::cin >> query;
+    } while (query[0] != 'T' && query[0] != 'R');
+
+    for (auto article : articles) {
+      if (article->getType() == query[0])
+        found.push_back(article);
+    }
+  default:
+    found = articles;
   }
-  /*std::cout << "i found these items:\n";
-  for (auto item : found)
-  {
-          std::cout << item->getName() << std::endl;
-  }*/
   return found;
 }
 
 Article *createArticle(TireCenter &center) {
   std::string strInput;
   int intInput;
-  std::cout << "What is the name of the new article?";
-  std::cin >> strInput;
-  if (searchArticle(center, strInput).size() != 0) {
+  if (searchArticle(center).size() != 0) {
     do {
       std::cout << "Are you sure you want to add " << strInput
                 << "?\n 1. yes\n 2. no\n";
@@ -71,11 +97,7 @@ void addArticle(TireCenter &center) {
 
 void deleteArticle(TireCenter &center) {
   std::string query;
-
-  std::cout << "what is the name of the article you want to delete? \nenter "
-               "nothing to get a full list. ";
-  std::cin >> query;
-  auto articles = searchArticle(center, query);
+  auto articles = searchArticle(center);
   if (articles.size() == 0) {
     return;
   }
@@ -117,7 +139,7 @@ void changeArticle(TireCenter &center) {
   std::cout << "What article are you looking to change? ";
   std::cin >> inputStr;
 
-  auto articles = searchArticle(center, inputStr);
+  auto articles = searchArticle(center);
   if (articles.size() == 0) {
     return;
   }
@@ -147,10 +169,11 @@ void changeArticle(TireCenter &center) {
 std::vector<Customer *> searchCustomer(TireCenter &center, std::string query) {
   auto customers = center.getCustomer();
   std::vector<Customer *> found;
-  for (auto customer : customers) {
-    if (std::string::npos != customer->getName().find(query)) {
-      found.push_back(customer);
+
+    for (auto customer : customers) {
+      if (std::string::npos != customer->getName().find(query)) {
+        found.push_back(customer);
+      }
     }
-  }
-  return found;
+    return found;
 }

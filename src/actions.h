@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-std::vector<Article *> searchArticle(TireCenter &center, std::string query);
+std::vector<Article *> searchArticle(TireCenter &center);
 
 Article *createArticle(TireCenter &center);
 
