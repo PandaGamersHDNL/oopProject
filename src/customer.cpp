@@ -13,7 +13,7 @@ void Customer::setAddress(std::string address) { this->address = address; }
 
 char Customer::getType() { return this->type; }
 
-void Customer::setType(char type) { this->type = type; }
+void Customer::setType() { this->type = 'U'; }
 
 void Customer::addData() {
   std::string inputStr;
@@ -22,7 +22,7 @@ void Customer::addData() {
   std::getline(std::cin, inputStr); // empty buffer
   std::getline(std::cin, inputStr);
   this->setAddress(inputStr);
-  this->setType('U');
+  this->setType();
 }
 
 void Customer::show() {
@@ -58,6 +58,7 @@ void Customer::changeProperty(int propertyIndex) {
 }
 
 void Customer::loadData(std::ifstream &file) {
+  this->setType();
   std::string input;
   std::getline(file, input);
   this->setName(input);
@@ -66,7 +67,7 @@ void Customer::loadData(std::ifstream &file) {
 }
 
 void Customer::saveData(std::ofstream &file) {
-  file << this->getType() << std::endl;
+  file << this->getType() << " " << std::endl;
   file << this->getName() << std::endl;
   file << this->getAddress() << std::endl;
 }

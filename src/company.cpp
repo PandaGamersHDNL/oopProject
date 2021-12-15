@@ -17,7 +17,7 @@ void Company::addData() {
   std::string inputStr;
   int inputInt;
   Customer::addData();
-  this->setType('O');
+  this->setType();
   std::cout << "Enter the VAT. ";
   std::cin >> inputStr;
   this->setVAT(inputStr);
@@ -62,6 +62,8 @@ void Company::changeProperty(int propertyIndex) {
     break;
   }
 }
+
+void Company::setType() { this->type = 'O'; }
 
 void Company::loadData(std::ifstream &file) {
   Customer::loadData(file);

@@ -159,7 +159,6 @@ void placeOrder(TireCenter &center) {
 
   for (int i = 0; i < length; i++) {
     std::cout << "searching article nr: " << i << std::endl;
-    std::cin >> query;
     auto foundArticles = searchArticle(center);
 
     do {
@@ -178,10 +177,16 @@ void placeOrder(TireCenter &center) {
     article->setStock(inputInt);
     articles.push_back(article);
   }
+  invoice->setArticles(articles);   
   //TODO set price and discount
   invoice->setPrice();
   invoice->setDiscount();
+
+  auto invoices = center.getInvoice();
+  invoices.push_back(invoice);
+  center.setInvoices(invoices);
 }
+
 void checkInvoices(TireCenter &center) {
   for (auto invoice : center.getInvoice()) {
     invoice->show();
@@ -226,27 +231,8 @@ void performAction(TireCenter &center, Options option) {
 
 int main(void) {
   auto center = TireCenter(DATAPATH);
-  // auto art = center.getArticles();
-  // auto beep = new Tire;
-  // addCustomer(center);
-  // addCustomer(center);
-  // deleteCustomer(center);
-  //  beep->setName("beep");
-  //  beep->setType('T');
-  //  art.push_back(beep);
-  //  auto boop = new Rim;
-  //  boop->setName("boop");
-  //  boop->setType('R');
-  //  art.push_back(boop);
-  //  center.setArticles(art);
-  //  std::cout << center.getAddress() << std::endl << center.getName() <<
-  //  std::endl << "beep";
-  //  Menu menu;
-  //   test these:
-  //  addArticle(center);
-  //  addArticle(center);
-  //  deleteArticle(center);
-  changeCustomer(center);
+  //placeOrder(center);
+  checkInvoices(center);
   center.saveData();
   return 0;
 }

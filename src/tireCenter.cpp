@@ -44,7 +44,7 @@ void TireCenter::saveData() {
     file << this->getName() << std::endl;
     file << this->getAddress() << std::endl;
     saveCustomers();
-    // save invoices
+    saveInvoices();
     saveArticles();
     std::cout << "saved data";
     file.close();
@@ -61,13 +61,13 @@ void TireCenter::loadCusomers() {
     if (type[0] == 'U') {
       auto cust = new Customer();
       cust->loadData(file);
-      cust->setType('U');
+      cust->setType();
       customers.push_back(cust);
       cust->show();
     } else if (type[0] == 'O') {
       auto comp = new Company();
       comp->loadData(file);
-      comp->setType('O');
+      comp->setType();
       customers.push_back(comp);
       comp->show();
     }
@@ -86,11 +86,26 @@ void TireCenter::saveCustomers() {
 }
 
 void TireCenter::loadInvoices() {
-  auto invoice = new Invoice();
-  std::ifstream file(this->path + "/invoices.txt");
+  auto invoices = this->getInvoice();
+
+    std::ifstream file(this->path + "/invoices.txt");
+  std::string str;
+    while (std::getline(file, str) && str != "") {
+    auto invoice = new Invoice();
+    invoice->loadData(file);
+    invoices.push_back(invoice); 
+  }
+    this->setInvoices(invoices);
+  file.close();
 }
 
-void TireCenter::saveInvoices() {}
+void TireCenter::saveInvoices() {
+  std::ofstream file(this->path + "/invoices.txt");
+  for (auto invoice : this->getInvoice()) {
+    file << "not end" << std::endl;
+      invoice->saveData(file);
+  }
+}
 
 void TireCenter::loadArticles() {
   std::ifstream file(this->path + "/articles.txt");

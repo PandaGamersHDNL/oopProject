@@ -30,6 +30,6 @@ public:
 
   void show();
 
-  void saveData();
-  void loadData();
+  void saveData(std::ofstream &file);
+  void loadData(std::ifstream &file);
 };

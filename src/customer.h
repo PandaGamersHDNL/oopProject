@@ -6,6 +6,8 @@ class Customer {
 private:
   std::string name;
   std::string address;
+
+protected:
   char type;
 
 public:
@@ -18,7 +20,7 @@ public:
   void setAddress(std::string address);
 
   char getType();
-  void setType(char type);
+  virtual void setType();
 
   virtual void addData();
 
