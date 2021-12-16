@@ -11,12 +11,9 @@
 #define FILENAME "tirecenter.txt"
 
 TireCenter::TireCenter() {}
-/* TireCenter::~TireCenter() {
-  // TODO save before delete
-}*/
+
 TireCenter::TireCenter(std::string path) {
   this->loadData(path);
-  // load data from file
 }
 
 void TireCenter::loadData(std::string path) {
@@ -32,6 +29,7 @@ void TireCenter::loadData(std::string path) {
   } else {
     // TODO create tirecenter
   }
+  file.close();
   loadCusomers();
   loadInvoices();
   loadArticles();
@@ -43,11 +41,11 @@ void TireCenter::saveData() {
     std::ofstream file(this->path + "/" + FILENAME);
     file << this->getName() << std::endl;
     file << this->getAddress() << std::endl;
+    file.close();
     saveCustomers();
     saveInvoices();
     saveArticles();
     std::cout << "saved data";
-    file.close();
   }
 }
 
@@ -73,7 +71,7 @@ void TireCenter::loadCusomers() {
     }
   }
   this->setCustomers(customers);
-  std::cout << customers.size() << std::endl;
+  file.close();
 }
 
 void TireCenter::saveCustomers() {
@@ -83,19 +81,20 @@ void TireCenter::saveCustomers() {
     cust->saveData(file);
     // delete cust;
   }
+  file.close();
 }
 
 void TireCenter::loadInvoices() {
   auto invoices = this->getInvoice();
 
-    std::ifstream file(this->path + "/invoices.txt");
+  std::ifstream file(this->path + "/invoices.txt");
   std::string str;
-    while (std::getline(file, str) && str != "") {
+  while (std::getline(file, str) && str != "") {
     auto invoice = new Invoice();
     invoice->loadData(file);
-    invoices.push_back(invoice); 
+    invoices.push_back(invoice);
   }
-    this->setInvoices(invoices);
+  this->setInvoices(invoices);
   file.close();
 }
 
@@ -103,32 +102,29 @@ void TireCenter::saveInvoices() {
   std::ofstream file(this->path + "/invoices.txt");
   for (auto invoice : this->getInvoice()) {
     file << "not end" << std::endl;
-      invoice->saveData(file);
+    invoice->saveData(file);
   }
+  file.close();
 }
 
 void TireCenter::loadArticles() {
   std::ifstream file(this->path + "/articles.txt");
   std::string type;
   auto artics = this->getArticles();
-
+  Article *art = nullptr;
   while (std::getline(file, type)) {
     if (type[0] == 'R') {
-      auto tire = new Tire();
-      tire->loadData(file);
-      tire->setType();
-      artics.push_back(tire);
-      tire->show();
+      art = new Rim();
     } else if (type[0] == 'T') {
-      auto rim = new Rim();
-      rim->loadData(file);
-      rim->setType();
-      artics.push_back(rim);
-      rim->show();
+      art = new Tire();
     }
+    art->loadData(file);
+    art->show();
+    art->setType();
+    artics.push_back(art);
   }
   this->setArticles(artics);
-  std::cout << artics.size() << std::endl;
+  file.close();
 }
 
 void TireCenter::saveArticles() {
@@ -138,6 +134,7 @@ void TireCenter::saveArticles() {
     art->saveData(file);
     // delete art;
   }
+  file.close();
 }
 
 std::string TireCenter::getName() { return this->name; }
