@@ -12,9 +12,7 @@
 
 TireCenter::TireCenter() {}
 
-TireCenter::TireCenter(std::string path) {
-  this->loadData(path);
-}
+TireCenter::TireCenter(std::string path) { this->loadData(path); }
 
 void TireCenter::loadData(std::string path) {
   std::fstream file(path + "/" + FILENAME);
@@ -27,7 +25,11 @@ void TireCenter::loadData(std::string path) {
     std::getline(file, text);
     this->setAddress(text);
   } else {
-    // TODO create tirecenter
+    std::string str;
+    std::cin >> str;
+    this->setName(str);
+    std::getline(std::cin, str);
+    this->setAddress(str);
   }
   file.close();
   loadCusomers();
@@ -45,32 +47,30 @@ void TireCenter::saveData() {
     saveCustomers();
     saveInvoices();
     saveArticles();
-    std::cout << "saved data";
   }
 }
 
 void TireCenter::loadCusomers() {
   std::cout << "loading customers" << std::endl;
   std::ifstream file(this->path + "/customers.txt");
-  std::string type;
-  auto customers = this->getCustomer();
+  if (file.is_open()) {
+    std::string type;
+    auto customers = this->getCustomer();
 
-  while (std::getline(file, type)) {
-    if (type[0] == 'U') {
-      auto cust = new Customer();
+    while (std::getline(file, type)) {
+      Customer *cust = nullptr;
+      if (type[0] == 'U') {
+        cust = new Customer();
+      } else if (type[0] == 'O') {
+        cust = new Company();
+      }
       cust->loadData(file);
       cust->setType();
       customers.push_back(cust);
       cust->show();
-    } else if (type[0] == 'O') {
-      auto comp = new Company();
-      comp->loadData(file);
-      comp->setType();
-      customers.push_back(comp);
-      comp->show();
     }
+    this->setCustomers(customers);
   }
-  this->setCustomers(customers);
   file.close();
 }
 
