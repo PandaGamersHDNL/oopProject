@@ -173,7 +173,7 @@ void placeOrder(TireCenter &center) {
     auto article = selected->clone();
     std::cout << "How many of these did they order? ";
     std::cin >> inputInt;
-    updateStock(selected, inputInt);
+    updateStock(selected, -inputInt);
     article->setStock(inputInt);
     articles.push_back(article);
   }
@@ -194,7 +194,7 @@ void checkInvoices(TireCenter &center) {
 }
 
 void performAction(TireCenter &center, Options option) {
-    //TODO add lookup customer + lookup article(filters)
+    //TODO add lookup customer all
   switch (option) {
   case Options::addArt:
     addArticle(center);
@@ -221,9 +221,14 @@ void performAction(TireCenter &center, Options option) {
     addCustomer(center);
     break;
   case Options::updateStock:
-    
+    //TODO
+    // search article
+    // select article 
+    // ask for change
     //updateStock();
     break;
+  case Options::exit:
+    return;
   default:
     break;
   }
@@ -231,8 +236,16 @@ void performAction(TireCenter &center, Options option) {
 
 int main(void) {
   auto center = TireCenter(DATAPATH);
-  //placeOrder(center);
-  checkInvoices(center);
+  Menu menu;
+  Options option;
+
+  //TODO test
+  while (!menu.permissionMenu()) {
+      do {
+        option = menu.showOptionMenu();
+        performAction(center, option);
+      } while (option != Options::exit);
+  }
   center.saveData();
   return 0;
 }

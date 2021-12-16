@@ -3,5 +3,5 @@
 
 std::vector<Options> Employee::permissions() {
   return {Options::changeArt,  Options::checkInvoice, Options::placeOrder,
-          Options::changeCust, Options::addCust,      Options::updateStock};
+          Options::changeCust, Options::addCust,      Options::updateStock, Options::exit};
 }

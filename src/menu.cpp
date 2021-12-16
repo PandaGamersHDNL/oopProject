@@ -5,8 +5,6 @@
 #include <iostream>
 
 Menu::Menu() {
-  permissionMenu();
-  std::cout << optionsToString(showOptionMenu()) << std::endl;
 }
 
 std::string Menu::optionsToString(Options option) {
@@ -38,6 +36,8 @@ std::string Menu::optionsToString(Options option) {
   case Options::updateStock:
     return "Update stock";
     break;
+  case Options::exit:
+    "Exit";
   default:
     return "not a valid option";
   }
@@ -49,14 +49,14 @@ Options Menu::showOptionMenu() {
   for (auto &option : options) {
     std::cout << counter++ << ". " << optionsToString(option) << std::endl;
   }
-  std::cout << "pick your action." << std::endl;
+  std::cout << "pick your action. " << std::endl;
   std::cin >> choice;
   return this->options[--choice];
 }
 
-void Menu::permissionMenu() {
+bool Menu::permissionMenu() {
   int choice;
-  std::cout << "Are you the owner or an employee?\n1. Owner\n2. Employee\n";
+  std::cout << "Are you the owner or an employee?\n1. Owner\n2. Employee\n3. Exit";
   std::cin >> choice;
   switch (choice) {
   case 1:
@@ -65,10 +65,13 @@ void Menu::permissionMenu() {
   case 2:
     this->options = Employee::permissions();
     break;
+  case 3:
+    return false;
   default:
     std::cout << "Not a valid choice!\n\n\n";
     permissionMenu();
     break;
   }
   std::cout << "\n";
+  return true;
 }

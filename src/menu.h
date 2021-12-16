@@ -17,6 +17,5 @@ public:
   std::string optionsToString(Options option);
   Options showOptionMenu();
   // employee/customer Menu
-  void permissionMenu(); // temp menu to pick if you're owner should be detected
-                         // from who calls the menu
+  bool permissionMenu(); 
 };

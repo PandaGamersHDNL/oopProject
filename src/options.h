@@ -9,5 +9,7 @@ enum class Options {
   deleteCust,
   changeCust,
   addCust,
-  updateStock
+  updateStock,
+  //todo add search article/ search customer
+  exit
 };
