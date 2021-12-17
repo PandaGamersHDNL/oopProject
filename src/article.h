@@ -4,11 +4,11 @@
 
 class Article {
 private:
-  std::string name;
-  std::string manufacturer;
-  int stock;
-  int diameter;
-  float price;
+  std::string name = "not set";
+  std::string manufacturer = "not set";
+  int stock = 0;
+  int diameter = 0;
+  float price = 0.0f;
 
 protected:
   char type;

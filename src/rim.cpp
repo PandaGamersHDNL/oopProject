@@ -60,6 +60,20 @@ void Rim::changeProperty(int propIndex) {
 
 void Rim::setType() { this->type = 'R'; }
 
+void Rim::loadData(std::ifstream &file) { 
+    Article::loadData(file); 
+    /*
+    beep
+    */
+}
+
+void Rim::saveData(std::ofstream &file) { 
+    Article::saveData(file); 
+    /*
+    beep
+    */
+}
+
 Article *Rim::clone() { return new Rim(*this); }
 
 void Rim::rimData() {

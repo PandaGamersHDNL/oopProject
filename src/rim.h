@@ -4,9 +4,9 @@
 
 class Rim : public Article {
 private:
-  std::string color;
-  bool aluminium;
-  int width;
+  std::string color = "not set";
+  bool aluminium = false;
+  int width = 0;
 
 public:
   virtual ~Rim() = default;
@@ -28,7 +28,11 @@ public:
 
   virtual void setType() override;
 
+  virtual void loadData(std::ifstream &file);
+  virtual void saveData(std::ofstream &file);
+
   virtual Article *clone() override;
 
+  //todo virtual
   void rimData();
 };

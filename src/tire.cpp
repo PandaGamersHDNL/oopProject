@@ -71,9 +71,24 @@ void Tire::changeProperty(int propIndex) {
 
 void Tire::setType() { this->type = 'T'; }
 
+void Tire::loadData(std::ifstream &file) {
+  Article::loadData(file);
+  /* file >> this->setHeight();
+  file >> this->setSeason();
+  file >> this->setSpeedIndex();*/
+}
+
+void Tire::saveData(std::ofstream &file) {
+  Article::saveData(file);
+  /*
+  beep
+  */
+}
+
 Article *Tire::clone() { return new Tire(*this); }
 
 void Tire::tireData() {
+  // todo virtual
   int inputInt;
   char inputChar;
   std::string inputStr;

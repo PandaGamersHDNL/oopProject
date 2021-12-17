@@ -103,6 +103,10 @@ void Article::articleData() {
   std::string inputStr;
   float inputFloat;
 
+  std::cout << "please enter the name. ";
+  std::cin >> inputStr;
+  this->setName(inputStr);
+
   std::cout << "please enter the diameter. ";
   std::cin >> inputInt;
   this->setDiameter(inputInt);

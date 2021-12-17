@@ -10,7 +10,7 @@ private:
   float price = 0.0f;
   int discount = 0;
 
-  float calculateDiscount();
+  int calculateDiscount();
   float calculatePrice();
 
 public:

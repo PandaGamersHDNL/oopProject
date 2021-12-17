@@ -4,10 +4,10 @@
 
 class Tire : public Article {
 private:
-  int width;
-  int height;
-  std::string speedIndex;
-  char season;
+  int width = 0;
+  int height = 0;
+  std::string speedIndex = "not set";
+  char season = 'N';
 
 public:
   virtual ~Tire() = default;
@@ -31,6 +31,9 @@ public:
   virtual void changeProperty(int propIndex) override;
 
   virtual void setType() override;
+
+  virtual void loadData(std::ifstream &file);
+  virtual void saveData(std::ofstream &file);
 
   virtual Article *clone() override;
 

@@ -8,9 +8,10 @@ private:
   std::string address;
 
 protected:
-  char type;
+  char type = 'U';
 
 public:
+  Customer() { setType(); }
   virtual ~Customer() = default;
 
   std::string getName();

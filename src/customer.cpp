@@ -40,12 +40,12 @@ std::vector<std::string> Customer::getProperties() {
 }
 
 void Customer::changeProperty(int propertyIndex) {
-  // clear buffer
+  
   std::string inputStr;
   switch (propertyIndex) {
   case 0:
     std::cout << "what is the new name? ";
-    std::cin >> std::ws;
+    std::cin >> std::ws; // clear buffer
     std::cin >> inputStr;
     this->setName(inputStr);
     break;

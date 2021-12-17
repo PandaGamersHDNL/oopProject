@@ -23,7 +23,7 @@ void Invoice::setPrice() { this->price = calculatePrice(); }
 
 int Invoice::getDiscount() { return this->discount; }
 
-void Invoice::setDiscount() { this->discount = discount; }
+void Invoice::setDiscount() { this->discount = calculateDiscount() ; }
 
 void Invoice::show() {
   std::cout << "----------------------Invoice-------------------" << std::endl;
@@ -85,15 +85,25 @@ void Invoice::loadData(std::ifstream &file) {
   this->setArticles(list);
   int inputInt;
   file >> inputInt;
-  this->discount = inputInt;
+  this->setDiscount();
+  float inputFloat;
+  file >> inputFloat;
   this->setPrice();
 }
 
-float Invoice::calculateDiscount() {
-  // TODO
-  float discount = 0;
-  this->getArticles();
-  return discount;
+int Invoice::calculateDiscount() {
+  int disc = 0;
+  for (auto art : this->getArticles()) {
+    if (art->getStock() > 4) {
+      disc = 20;
+      for (auto art2 : this->getArticles()) {
+        if (art->getDiameter() == art2->getDiameter()) {
+            return 30;
+        }
+      }
+    }
+  }
+  return disc;
 }
 
 float Invoice::calculatePrice() {

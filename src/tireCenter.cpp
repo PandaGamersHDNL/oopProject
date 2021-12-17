@@ -64,10 +64,12 @@ void TireCenter::loadCusomers() {
       } else if (type[0] == 'O') {
         cust = new Company();
       }
-      cust->loadData(file);
-      cust->setType();
-      customers.push_back(cust);
-      cust->show();
+      if (cust) {
+        cust->loadData(file);
+        cust->setType();
+        customers.push_back(cust);
+        cust->show();
+      }
     }
     this->setCustomers(customers);
   }
@@ -118,10 +120,13 @@ void TireCenter::loadArticles() {
     } else if (type[0] == 'T') {
       art = new Tire();
     }
-    art->loadData(file);
-    art->show();
-    art->setType();
-    artics.push_back(art);
+    if (art) {
+      art->loadData(file);
+      art->setType();
+      art->show();
+      artics.push_back(art);
+      art = nullptr;
+    }
   }
   this->setArticles(artics);
   file.close();

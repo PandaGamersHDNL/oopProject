@@ -37,7 +37,7 @@ std::string Menu::optionsToString(Options option) {
     return "Update stock";
     break;
   case Options::exit:
-    "Exit";
+    return "Exit";
   default:
     return "not a valid option";
   }
