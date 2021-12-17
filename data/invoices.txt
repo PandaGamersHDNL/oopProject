@@ -8,6 +8,9 @@ bananaInc
 20
 49.99
 8
+not set
+0
+0
 -----------Articles-end----------
 30
 399.92

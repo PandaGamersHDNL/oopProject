@@ -1,4 +1,5 @@
 #include "tire.h"
+#include <fstream>
 #include <iostream>
 
 int Tire::getWidth() { return this->width; }
@@ -80,9 +81,10 @@ void Tire::loadData(std::ifstream &file) {
 
 void Tire::saveData(std::ofstream &file) {
   Article::saveData(file);
-  /*
-  beep
-  */
+  file << this->getWidth() << std::endl;
+  file << this->getHeight() << std::endl;
+  file << this->getSpeedIndex() << std::endl;
+  file << this->getSeason() << std::endl;
 }
 
 Article *Tire::clone() { return new Tire(*this); }

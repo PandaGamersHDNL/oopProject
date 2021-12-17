@@ -1,4 +1,5 @@
 #include "rim.h"
+#include <fstream>
 #include <iostream>
 
 int Rim::getWidth() { return width; }
@@ -69,9 +70,9 @@ void Rim::loadData(std::ifstream &file) {
 
 void Rim::saveData(std::ofstream &file) { 
     Article::saveData(file); 
-    /*
-    beep
-    */
+    file << this->getColor() << std::endl;
+    file << this->getAluminium() << std::endl;
+    file << this->getWidth() << std::endl;
 }
 
 Article *Rim::clone() { return new Rim(*this); }

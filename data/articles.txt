@@ -4,15 +4,26 @@ beepinc
 5
 25.5
 17
+not set
+0
+0
 T
 beep
 boopinc
 5
 5
 7
+0
+0
+not set
+N
 T
 boop
 5
 5
 5
 15
+0
+0
+not set
+N
