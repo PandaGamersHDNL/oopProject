@@ -1,9 +1,6 @@
 #include "actions.h"
-#include "company.h"
 #include "menu.h"
 #include "options.h"
-#include "rim.h"
-#include "tire.h"
 #include "tireCenter.h"
 
 #define DATAPATH "C:/Users/panda/Documents/oopProject/data"

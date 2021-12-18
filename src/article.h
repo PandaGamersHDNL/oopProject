@@ -14,7 +14,6 @@ protected:
   char type;
 
 public:
-  Article() { this->setType(); }
   virtual ~Article() = default;
 
   std::string getName();

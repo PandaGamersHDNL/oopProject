@@ -10,6 +10,7 @@ private:
   char season = 'N';
 
 public:
+  Tire() { this->setType(); }
   virtual ~Tire() = default;
 
   int getWidth();

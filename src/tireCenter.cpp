@@ -94,6 +94,7 @@ void TireCenter::loadInvoices() {
   while (std::getline(file, str) && str != "") {
     auto invoice = new Invoice();
     invoice->loadData(file);
+    invoice->show();
     invoices.push_back(invoice);
   }
   this->setInvoices(invoices);

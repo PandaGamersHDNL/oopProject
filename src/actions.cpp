@@ -89,11 +89,17 @@ Article *createArticle(TireCenter &center) {
 void addArticle(TireCenter &center) {
   auto art = createArticle(center);
   if (art) {
-    // TODO summary + confirmation
     art->show();
-    auto articles = center.getArticles();
-    articles.push_back(art);
-    center.setArticles(articles);
+    int inputInt;
+    std::cout << "are you sure you wanna add this article? 1. yes ";
+    std::cin >> inputInt;
+    if (inputInt == 1) {
+        auto articles = center.getArticles();
+        articles.push_back(art);
+        center.setArticles(articles);
+    } else {
+      delete art;
+    }
   }
 }
 

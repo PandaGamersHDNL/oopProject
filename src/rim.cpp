@@ -66,7 +66,8 @@ void Rim::loadData(std::ifstream &file) {
     std::string inputStr;
     bool inputBool;
     int inputInt;
-    file >> inputStr;
+    file >> std::ws;
+    std::getline(file, inputStr);
     this->setColor(inputStr);
     file >> inputBool;
     this->setAluminium(inputBool);

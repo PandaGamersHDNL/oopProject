@@ -80,6 +80,7 @@ void Tire::loadData(std::ifstream &file) {
   this->setWidth(inputInt);
   file >> inputInt;
   this->setHeight(inputInt);
+  file >> std::ws;
   std::getline(file, inputStr);
   this->setSpeedIndex(inputStr);
   std::getline(file, inputStr);
@@ -106,7 +107,7 @@ void Tire::addData() {
   std::cin >> inputInt;
   this->setWidth(inputInt);
 
-  std::cout << "enter the heieght. ";
+  std::cout << "enter the height. ";
   std::cin >> inputInt;
   this->setHeight(inputInt);
 

@@ -9,6 +9,7 @@ private:
   int width = 0;
 
 public:
+  Rim() { this->setType(); }
   virtual ~Rim() = default;
 
   int getWidth();
