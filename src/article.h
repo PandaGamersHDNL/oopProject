@@ -14,6 +14,7 @@ protected:
   char type;
 
 public:
+  Article() { this->setType(); }
   virtual ~Article() = default;
 
   std::string getName();
@@ -36,7 +37,7 @@ public:
   
   virtual Article *clone() = 0;
 
-  void articleData();
+  virtual void addData();
 
   virtual void show();
 

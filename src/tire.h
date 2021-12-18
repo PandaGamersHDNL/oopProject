@@ -37,5 +37,5 @@ public:
 
   virtual Article *clone() override;
 
-  void tireData();
+  virtual void addData() override;
 };

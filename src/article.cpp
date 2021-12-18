@@ -98,7 +98,7 @@ void Article::saveData(std::ofstream &file) {
   file << this->getStock() << std::endl;
 }
 
-void Article::articleData() {
+void Article::addData() {
   int inputInt;
   std::string inputStr;
   float inputFloat;

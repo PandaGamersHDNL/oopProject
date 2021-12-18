@@ -74,22 +74,16 @@ Article *createArticle(TireCenter &center) {
     std::cout << "What type 1. rim or 2. tire?";
     std::cin >> intInput;
   } while (intInput > 2 || intInput < 1);
+  Article *art = nullptr;
   if (intInput == 1) {
-    auto rim = new Rim();
-    rim->setType();
-    rim->setName(strInput);
-    rim->articleData();
-    rim->rimData();
-    return rim;
+    art = new Rim();
   } else if (intInput == 2) {
-    auto tire = new Tire();
-    tire->setType();
-    tire->setName(strInput);
-    tire->articleData();
-    tire->tireData();
-    return tire;
+    art = new Tire();
   }
-  return nullptr;
+  if (art) {
+    art->addData();
+  }
+  return art;
 }
 
 void addArticle(TireCenter &center) {

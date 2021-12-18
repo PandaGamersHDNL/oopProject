@@ -74,9 +74,16 @@ void Tire::setType() { this->type = 'T'; }
 
 void Tire::loadData(std::ifstream &file) {
   Article::loadData(file);
-  /* file >> this->setHeight();
-  file >> this->setSeason();
-  file >> this->setSpeedIndex();*/
+  std::string inputStr;
+  int inputInt;
+  file >> inputInt;
+  this->setWidth(inputInt);
+  file >> inputInt;
+  this->setHeight(inputInt);
+  std::getline(file, inputStr);
+  this->setSpeedIndex(inputStr);
+  std::getline(file, inputStr);
+  this->setSeason(inputStr[0]);
 }
 
 void Tire::saveData(std::ofstream &file) {
@@ -89,8 +96,8 @@ void Tire::saveData(std::ofstream &file) {
 
 Article *Tire::clone() { return new Tire(*this); }
 
-void Tire::tireData() {
-  // todo virtual
+void Tire::addData() {
+  Article::addData();
   int inputInt;
   char inputChar;
   std::string inputStr;
