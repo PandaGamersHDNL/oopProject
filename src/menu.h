@@ -6,16 +6,17 @@
 #include <string>
 #include <vector>
 
-class Menu {
-private:
-  std::vector<Options> options;
+class Menu
+{
+  private:
+    std::vector<Options> options;
 
-public:
-  Menu();
-  virtual ~Menu() = default;
+  public:
+    Menu();
+    virtual ~Menu() = default;
 
-  std::string optionsToString(Options option);
-  Options showOptionMenu();
-  // employee/customer Menu
-  bool permissionMenu(); 
+    std::string optionsToString(Options option);
+    Options showOptionMenu();
+    // employee/customer Menu
+    bool permissionMenu();
 };
