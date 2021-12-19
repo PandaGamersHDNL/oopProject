@@ -15,7 +15,7 @@ void deleteArticle(TireCenter &center);
 
 void changeArticle(TireCenter &center);
 
-std::vector<Customer *> searchCustomer(TireCenter &center, std::string query);
+std::vector<Customer *> searchCustomer(TireCenter &center);
 
 void updateStock(Article *art, int amount, bool absolute = false);
 

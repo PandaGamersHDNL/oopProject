@@ -22,6 +22,8 @@ public:
   std::vector<Article *> getArticles();
   void setArticles(std::vector<Article *>);
 
+  float realPrice();
+
   float getPrice();
   void setPrice();
 

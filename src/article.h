@@ -11,7 +11,7 @@ private:
   float price = 0.0f;
 
 protected:
-  char type;
+  char type = 'A';
 
 public:
   virtual ~Article() = default;

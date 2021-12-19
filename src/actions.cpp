@@ -1,14 +1,15 @@
 #include "actions.h"
+#include "company.h"
+#include "options.h"
 #include "rim.h"
 #include "tire.h"
-#include "options.h"
-#include "company.h"
 #include <iostream>
 
 std::vector<Article *> searchArticle(TireCenter &center) {
   int inputInt;
   do {
-    std::cout << "select a filter. 1. by name 2. by diameter 3. by article type 4. all";
+    std::cout << "select a filter. 1. by name 2. by diameter 3. by article "
+                 "type 4. all";
     std::cin >> inputInt;
   } while (inputInt < 1 || inputInt > 4);
 
@@ -19,13 +20,12 @@ std::vector<Article *> searchArticle(TireCenter &center) {
   case 1:
     std::cout << "enter the name: ";
     std::cin >> query;
-      for (auto article : articles) {
-        if (std::string::npos != article->getName().find(query)) {
-          found.push_back(article);
-         
-        }
+    for (auto article : articles) {
+      if (std::string::npos != article->getName().find(query)) {
+        found.push_back(article);
       }
-      break;
+    }
+    break;
   case 2:
     std::cout << "enter the diameter: ";
     std::cin >> inputInt;
@@ -37,8 +37,8 @@ std::vector<Article *> searchArticle(TireCenter &center) {
     break;
   case 3:
     do {
-    std::cout << "enter the article type: T (Tire) or R (Rim) ";
-    std::cin >> query;
+      std::cout << "enter the article type: T (Tire) or R (Rim) ";
+      std::cin >> query;
     } while (query[0] != 'T' && query[0] != 'R');
 
     for (auto article : articles) {
@@ -94,9 +94,9 @@ void addArticle(TireCenter &center) {
     std::cout << "are you sure you wanna add this article? 1. yes ";
     std::cin >> inputInt;
     if (inputInt == 1) {
-        auto articles = center.getArticles();
-        articles.push_back(art);
-        center.setArticles(articles);
+      auto articles = center.getArticles();
+      articles.push_back(art);
+      center.setArticles(articles);
     } else {
       delete art;
     }
@@ -144,9 +144,7 @@ void deleteArticle(TireCenter &center) {
 
 void changeArticle(TireCenter &center) {
   std::string inputStr;
-  std::cout << "What article are you looking to change? ";
-  std::cin >> inputStr;
-
+  std::cout << "change article" << std::endl;
   auto articles = searchArticle(center);
   if (articles.size() == 0) {
     return;
@@ -174,16 +172,23 @@ void changeArticle(TireCenter &center) {
   change->show();
 }
 
-std::vector<Customer *> searchCustomer(TireCenter &center, std::string query) {
+std::vector<Customer *> searchCustomer(TireCenter &center) {
+  std::string query;
+
+  std::cout << "what is the name of the customer you want to delete? 1. all";
+  std::cin >> query;
   auto customers = center.getCustomer();
   std::vector<Customer *> found;
+  if (query[0] == '1') {
+    return customers;
+  }
 
-    for (auto customer : customers) {
-      if (std::string::npos != customer->getName().find(query)) {
-        found.push_back(customer);
-      }
+  for (auto customer : customers) {
+    if (std::string::npos != customer->getName().find(query)) {
+      found.push_back(customer);
     }
-    return found;
+  }
+  return found;
 }
 
 void updateStock(Article *art, int amount, bool absolute) {
@@ -197,10 +202,7 @@ void updateStock(Article *art, int amount, bool absolute) {
 void addCustomer(TireCenter &center) {
   std::string inputStr;
   int inputInt, counter;
-  std::cout << "what's the name of the new customer? ";
-  std::cin >> inputStr;
-  std::cin.ignore();
-  auto exist = searchCustomer(center, inputStr);
+  auto exist = searchCustomer(center);
   if (exist.size() > 0) {
     do {
       counter = 1;
@@ -217,8 +219,6 @@ void addCustomer(TireCenter &center) {
   }
 
   do {
-    // TODO use this to get rid of issues when entering a string (this would
-    // create a shit storm cus endl isn't ignored
     std::cout << "is this customer a company? 1. yes 2. no ";
     inputInt = std::cin.get();
     std::cout << inputInt;
@@ -230,20 +230,16 @@ void addCustomer(TireCenter &center) {
   } else {
     cust = new Customer();
   }
-  cust->setName(inputStr);
-  cust->addData();
-  auto customers = center.getCustomer();
-  customers.push_back(cust);
-  center.setCustomers(customers);
+  if (cust) {
+    cust->addData();
+    auto customers = center.getCustomer();
+    customers.push_back(cust);
+    center.setCustomers(customers);
+  }
 }
 
 void deleteCustomer(TireCenter &center) {
-  std::string query;
-
-  std::cout << "what is the name of the customer you want to delete? ";
-  std::cin >> query;
-  std::cout << query;
-  auto customers = searchCustomer(center, query);
+  auto customers = searchCustomer(center);
   if (customers.size() == 0) {
     return;
   }
@@ -281,11 +277,7 @@ void deleteCustomer(TireCenter &center) {
 }
 
 void changeCustomer(TireCenter &center) {
-  std::string inputStr;
-  std::cout << "Which Customer are you looking to change? ";
-  std::cin >> inputStr;
-
-  auto customers = searchCustomer(center, inputStr);
+  auto customers = searchCustomer(center);
   if (customers.size() == 0) {
     return;
   }
@@ -314,12 +306,8 @@ void changeCustomer(TireCenter &center) {
 
 void placeOrder(TireCenter &center) {
   auto invoice = new Invoice();
-  std::string query;
   int count = 0, inputInt = 0;
-
-  std::cout << "Which customer has placed this order? ";
-  std::cin >> query;
-  auto foundCust = searchCustomer(center, query);
+  auto foundCust = searchCustomer(center);
   do {
     count = 1;
     for (auto fc : foundCust) {
@@ -351,12 +339,12 @@ void placeOrder(TireCenter &center) {
     auto article = selected->clone();
     std::cout << "How many of these did they order? ";
     std::cin >> inputInt;
+
     updateStock(selected, -inputInt);
     article->setStock(inputInt);
     articles.push_back(article);
   }
   invoice->setArticles(articles);
-  // TODO set price and discount
   invoice->setPrice();
   invoice->setDiscount();
 
@@ -372,7 +360,7 @@ void checkInvoices(TireCenter &center) {
 }
 
 void performAction(TireCenter &center, Options option) {
-  // TODO add lookup customer all
+  int counter = 1, inputInt;
   switch (option) {
   case Options::addArt:
     addArticle(center);
@@ -397,14 +385,45 @@ void performAction(TireCenter &center, Options option) {
     break;
   case Options::addCust:
     addCustomer(center);
+  case Options::searchArticles: {
+    auto arts = searchArticle(center);
+    for (auto art : arts)
+      std::cout << counter++ << ". " << art->getName() << std::endl;
+    std::cout << "selelect the article you want to see. ";
+    std::cin >> inputInt;
+    auto change = arts[--inputInt];
+    change->show();
     break;
-  case Options::updateStock:
-    // TODO
-    // search article
-    // select article
-    // ask for change
-    // updateStock();
+  }
+  case Options::searchCustomers: {
+    auto arts = searchCustomer(center);
+    for (auto art : arts)
+      std::cout << counter++ << ". " << art->getName() << std::endl;
+    std::cout << "selelect the article you want to see. ";
+    std::cin >> inputInt;
+    auto change = arts[--inputInt];
+    change->show();
     break;
+  }
+  case Options::updateStock: {
+    auto arts = searchArticle(center);
+    for (auto art : arts) {
+      std::cout << counter++ << ". " << art->getName() << std::endl;
+    }
+    std::cout << "selelect the article you want to update. ";
+    std::cin >> inputInt;
+
+    auto change = arts[--inputInt];
+    change->show();
+    std::cout << "do you want to 1. set or 2. add stock. ";
+    std::cin >> inputInt;
+    bool inputBool = inputInt == 1 ? true : false;
+    std::cout << "what is the update value. ";
+    std::cin >> inputInt;
+    updateStock(change, inputInt, inputBool);
+    change->show();
+    break;
+  }
   case Options::exit:
     return;
   default:

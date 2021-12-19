@@ -81,7 +81,6 @@ void TireCenter::saveCustomers() {
   for (auto cust : this->getCustomer()) {
     std::cout << cust->getName() << std::endl;
     cust->saveData(file);
-    // delete cust;
   }
   file.close();
 }

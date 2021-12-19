@@ -36,6 +36,10 @@ std::string Menu::optionsToString(Options option) {
   case Options::updateStock:
     return "Update stock";
     break;
+  case Options::searchArticles:
+    return "Search articles";
+  case Options::searchCustomers:
+    return "Search customers";
   case Options::exit:
     return "Exit";
   default:

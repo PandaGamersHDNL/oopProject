@@ -34,6 +34,5 @@ public:
 
   virtual Article *clone() override;
 
-  //todo virtual
   virtual void addData() override;
 };

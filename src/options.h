@@ -10,6 +10,7 @@ enum class Options {
   changeCust,
   addCust,
   updateStock,
-  //todo add search article/ search customer
+  searchCustomers,
+  searchArticles,
   exit
 };
