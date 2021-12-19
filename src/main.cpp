@@ -3,7 +3,7 @@
 #include "options.h"
 #include "tireCenter.h"
 
-#define DATAPATH "C:/Users/panda/Documents/oopProject/data"
+#define DATAPATH "./../../data"
 
 int main(void)
 {

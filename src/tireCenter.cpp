@@ -25,7 +25,7 @@ void TireCenter::loadData(std::string path)
     this->path = path;
     if (file.is_open())
     {
-        std::cout << "load data";
+        std::cout << "load data" << std::endl;
         std::string text;
         std::getline(file, text);
         this->setName(text);
@@ -34,9 +34,11 @@ void TireCenter::loadData(std::string path)
     }
     else
     {
+      std::cout << "enter the name of the tire center. ";
         std::string str;
-        std::cin >> str;
+        std::getline(std::cin, str);
         this->setName(str);
+        std::cout << "enter the address of the tire center. ";
         std::getline(std::cin, str);
         this->setAddress(str);
     }
