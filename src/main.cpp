@@ -10,7 +10,6 @@ int main(void) {
   Menu menu;
   Options option;
 
-  //TODO test
   while (menu.permissionMenu()) {
       do {
         option = menu.showOptionMenu();
